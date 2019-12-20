@@ -1,3 +1,3 @@
 # Udemy GraphQL and React
 
-Project for code snippets written in the course
+Project for code snippets written in the Udemy course https://www.udemy.com/course/graphql-with-react-course
