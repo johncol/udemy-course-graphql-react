@@ -1,12 +1,12 @@
 const graphQL = require('graphql');
 const api = require('./../api');
 
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLSchema, GraphQLList } = graphQL;
+const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLList, GraphQLNonNull } = graphQL;
 
 const UserType = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
-    id: { type: GraphQLInt },
+    id: { type: GraphQLString },
     username: { type: GraphQLString },
     name: { type: GraphQLString },
     email: { type: GraphQLString },
@@ -53,4 +53,25 @@ const RootQuery = new GraphQLObjectType({
   }
 });
 
-module.exports = new GraphQLSchema({ query: RootQuery });
+const RootMutation = new GraphQLObjectType({
+  name: 'RootMutationType',
+  fields: {
+    addUser: {
+      type: UserType,
+      args: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        username: { type: GraphQLString },
+        email: { type: GraphQLString },
+        phone: { type: GraphQLString },
+        website: { type: GraphQLString },
+        companyId: { type: GraphQLString }
+      },
+      resolve: (_parentValue, args) => api.createUser(args)
+    }
+  }
+});
+
+module.exports = new GraphQLSchema({
+  query: RootQuery,
+  mutation: RootMutation
+});

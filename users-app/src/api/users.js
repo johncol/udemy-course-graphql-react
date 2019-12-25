@@ -7,6 +7,17 @@ const fetchUser = async id => {
   return response.json();
 };
 
+const createUser = async user => {
+  const response = await fetch(`${endpoint}`, {
+    method: 'POST',
+    body: JSON.stringify(user),
+    headers: { 'Content-Type': 'application/json' }
+  });
+
+  return response.json();
+};
+
 module.exports = {
-  fetchUser
+  fetchUser,
+  createUser
 };
