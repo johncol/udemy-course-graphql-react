@@ -53,6 +53,13 @@ const RootQuery = new GraphQLObjectType({
   }
 });
 
+const DatalessResponse = new GraphQLObjectType({
+  name: 'DatalessResponse',
+  fields: {
+    status: { type: GraphQLString }
+  }
+});
+
 const RootMutation = new GraphQLObjectType({
   name: 'RootMutationType',
   fields: {
@@ -67,6 +74,17 @@ const RootMutation = new GraphQLObjectType({
         companyId: { type: GraphQLString }
       },
       resolve: (_parentValue, args) => api.createUser(args)
+    },
+    deleteUser: {
+      type: DatalessResponse,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLString) }
+      },
+      resolve: (_parentValue, { id }) => {
+        return api.deleteUser(id).then(() => {
+          return { status: `User with id '${id}' was successfully deleted` };
+        });
+      }
     }
   }
 });

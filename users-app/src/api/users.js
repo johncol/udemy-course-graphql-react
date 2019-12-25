@@ -17,7 +17,14 @@ const createUser = async user => {
   return response.json();
 };
 
+const deleteUser = async id => {
+  const response = await fetch(`${endpoint}/${id}`, { method: 'DELETE' });
+
+  return response.json();
+};
+
 module.exports = {
   fetchUser,
-  createUser
+  createUser,
+  deleteUser
 };
