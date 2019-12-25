@@ -23,8 +23,21 @@ const deleteUser = async id => {
   return response.json();
 };
 
+const editUser = async ({ id, ...user }) => {
+  const response = await fetch(`${endpoint}/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify(user),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
+  return response.json();
+};
+
 module.exports = {
   fetchUser,
   createUser,
-  deleteUser
+  deleteUser,
+  editUser
 };

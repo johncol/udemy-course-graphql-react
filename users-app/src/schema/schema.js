@@ -85,6 +85,19 @@ const RootMutation = new GraphQLObjectType({
           return { status: `User with id '${id}' was successfully deleted` };
         });
       }
+    },
+    editUser: {
+      type: UserType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLString) },
+        name: { type: GraphQLString },
+        username: { type: GraphQLString },
+        email: { type: GraphQLString },
+        phone: { type: GraphQLString },
+        website: { type: GraphQLString },
+        companyId: { type: GraphQLString }
+      },
+      resolve: (_parentValue, args) => api.editUser(args)
     }
   }
 });
