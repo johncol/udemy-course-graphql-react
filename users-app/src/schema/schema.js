@@ -1,7 +1,7 @@
 const graphQL = require('graphql');
 const api = require('./../api');
 
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLSchema } = graphQL;
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLSchema, GraphQLList } = graphQL;
 
 const UserType = new GraphQLObjectType({
   name: 'User',
@@ -25,7 +25,11 @@ const CompanyType = new GraphQLObjectType({
     id: { type: GraphQLString },
     name: { type: GraphQLString },
     catchPhrase: { type: GraphQLString },
-    bs: { type: GraphQLString }
+    bs: { type: GraphQLString },
+    users: {
+      type: new GraphQLList(UserType),
+      resolve: (parentValue, _args) => api.fetchCompanyUsers(parentValue.id)
+    }
   })
 });
 

@@ -7,6 +7,12 @@ const fetchCompany = async id => {
   return response.json();
 };
 
+const fetchCompanyUsers = async id => {
+  const response = await fetch(`${endpoint}/${id}/users`);
+  return response.json();
+};
+
 module.exports = {
-  fetchCompany
+  fetchCompany,
+  fetchCompanyUsers
 };
