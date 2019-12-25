@@ -11,7 +11,11 @@ const UserType = new GraphQLObjectType({
     name: { type: GraphQLString },
     email: { type: GraphQLString },
     phone: { type: GraphQLString },
-    website: { type: GraphQLString }
+    website: { type: GraphQLString },
+    company: {
+      type: CompanyType,
+      resolve: (parentValue, _args) => api.fetchCompany(parentValue.companyId)
+    }
   })
 });
 
