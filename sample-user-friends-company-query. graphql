@@ -1,9 +1,0 @@
-query {
-  user(id: 23) {
-    users {
-      company {
-        name
-      }
-    }
-  }
-}

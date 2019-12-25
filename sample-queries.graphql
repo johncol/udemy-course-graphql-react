@@ -1,0 +1,42 @@
+query {
+  user(id: 23) {
+    users {
+      company {
+        name
+      }
+    }
+  }
+}
+
+query {
+  user(id: "9") {
+    id
+    username
+    name
+    email
+    website
+    phone
+    company {
+      id
+      name
+    }
+  }
+  company(id: "9") {
+    id
+    name
+    catchPhrase
+    users {
+      id
+      name
+      username
+    }
+  }
+}
+
+mutation {
+  addUser(name: "John", username: "johncol") {
+    id
+    name
+    username
+  }
+}
