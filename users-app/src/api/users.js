@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const endpoint = 'https://jsonplaceholder.typicode.com/users';
+const endpoint = 'http://localhost:3000/users';
 
 const fetchUser = async id => {
   const response = await fetch(`${endpoint}/${id}`);
