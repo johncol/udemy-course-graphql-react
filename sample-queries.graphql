@@ -34,9 +34,27 @@ query {
 }
 
 mutation {
-  addUser(name: "John", username: "johncol") {
+  addUser(name: "Michael", username: "michaelcol") {
     id
     name
     username
+  }
+}
+
+mutation {
+  editUser(id: "10", username: "michaelger") {
+    id
+    name
+    username
+    company {
+      id
+      name
+    }
+  }
+}
+
+mutation {
+  deleteUser(id: "1") {
+    status
   }
 }
